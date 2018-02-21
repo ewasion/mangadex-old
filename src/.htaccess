@@ -1,0 +1,63 @@
+Options +FollowSymLinks
+RewriteEngine On
+ 
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^(login|logout|signup|settings|group_new|funding|manga_new|upload|activation|hosting|groups|users|about|changelog|rules|admin|mod|messages|message|send_message|titles|follows|search|maintest|forums)/?$ ./?page=$1
+
+RewriteRule ^rss/group/(\d+)*/?$ ./rss/?group=$1
+
+RewriteRule ^rss/user/(\d+)*/?$ ./rss/?user=$1
+
+RewriteRule ^rss/cat/(\d+)*/?$ ./rss/?cat=$1
+
+RewriteRule ^reset_confirm/([\w-]{32})/?$ ./?page=reset_confirm&code=$1
+
+RewriteRule ^message/(\d+)/?$ ./?page=message&id=$1
+
+RewriteRule ^forum/(\d+)/?$ ./?page=forum&id=$1
+
+RewriteRule ^thread/(\d+)/?$ ./?page=thread&id=$1
+
+RewriteRule ^upload/(\d+)/?$ ./?page=upload&manga_id=$1
+RewriteRule ^upload_test/(\d+)/?$ ./?page=upload_test&manga_id=$1
+
+RewriteRule ^send_message/(.+)/?$ ./?page=send_message&recipient=$1
+
+RewriteRule ^chapter/(\d+)/?$ ./?page=chapter&id=$1
+RewriteRule ^chaptertest/(\d+)/?$ ./?page=chaptertest&id=$1
+
+RewriteRule ^chapter/(\d+)/(\d+)/?$ ./?page=chapter&id=$1&p=$2
+
+RewriteRule ^chapter/(\d+)/(\d+)/(\d+)/?$ ./?page=chapter&id=$1&p=$2&m=$3
+
+RewriteRule ^user/(\d+)/(.+)/(\d+)/?$ ./?page=user&id=$1&offset=$3
+RewriteRule ^user/(\d+)/?(.+)?$ ./?page=user&id=$1
+
+RewriteRule ^group/(\d+)/(.+)/(\d+)/?$ ./?page=group&id=$1&offset=$3
+RewriteRule ^group/(\d+)/?(.+)?$ ./?page=group&id=$1
+
+RewriteRule ^(\d+)/?$ ./?lang_id=$1
+RewriteRule ^(\d+)/(\d+)/?$ ./?lang_id=$1&offset=$2
+
+RewriteRule ^manga/(\d+)/(.+)/(\d+)/?$ ./?page=manga&id=$1&offset=$3
+RewriteRule ^manga/(\d+)/?(.+)?$ ./?page=manga&id=$1
+
+RewriteRule ^users/(\d+)/?$ ./?page=groups&offset=$1
+
+RewriteRule ^groups/(\d+)/?$ ./?page=groups&lang_id=$1
+RewriteRule ^groups/(\d+)/(\d+)/?$ ./?page=groups&lang_id=$1&offset=$2
+
+RewriteRule ^titles/([A-Za-z~])/?$ ./?page=titles&alpha=$1
+RewriteRule ^titles/(\d+)/?$ ./?page=titles&offset=$1
+RewriteRule ^titles/([A-Za-z~])/(\d+)/?$ ./?page=titles&alpha=$1&offset=$2
+
+
+RewriteRule ^admin/(visit_logs|rss_logs|autodl|action_logs)/?$ ./?page=admin&mode=$1
+
+RewriteRule ^mod/(reports)/(new|old)/?$ ./?page=mod&mode=$1&type=$2
+
+RewriteRule ^follows/(\d+)/?$ ./?page=follows&offset=$1
+
+ErrorDocument 404 /error.php

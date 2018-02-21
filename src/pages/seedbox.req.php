@@ -1,0 +1,1 @@
+If you choose to support us by subscribing to a seedbox, it will be accessible here in future.
